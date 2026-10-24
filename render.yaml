@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: evidence-desk
+    runtime: docker
+    plan: starter
+    healthCheckPath: /api/health
+    numInstances: 1
+    disk:
+      name: evidence-desk-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: EVIDENCE_DATA_DIR
+        value: /var/data/data
+      - key: EVIDENCE_UPLOAD_DIR
+        value: /var/data/uploads
+      - key: PYTHONUNBUFFERED
+        value: "1"
